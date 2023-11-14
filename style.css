@@ -1,0 +1,142 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+     /* Apply box-sizing to include padding and border in the overall height */
+    box-sizing: border-box;
+}
+
+/* Whole page */
+body {
+    font-family: 'Roboto';
+    padding: 20px;
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    gap: 20px;
+}
+
+/* Add book */
+.card#newBook {
+    min-width: 350px;
+}
+
+.form {
+    top: 20%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+div.input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.9rem;
+}
+
+div.input-checkbox {
+    font-size: 0.9rem;
+    display: flex;
+    gap: 15px;
+}
+
+input.bar {
+    padding: 5px 15px;
+    font-size: 1.2rem;
+    border: 1px solid lightgray;
+    border-radius: 10px;;
+}
+
+input.checkbox {
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+}
+
+.add-book {
+    background-color: lightskyblue;
+}
+
+/* card-container */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 20px;
+}
+
+/* card */
+.card {
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 30px 40px;
+    box-shadow: 0px 2px 3px rgb(175, 175, 175);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.upper-card,
+.lower-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+button.read,
+button.remove {
+    justify-self: flex-end;
+}
+
+.title {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.author {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.page {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 40px;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.read {
+    background-color: lightgreen;
+}
+
+.not-read {
+    background-color: lightpink;
+}
+
+/* Responsive */
+.add-book,
+button {
+    transition: transform 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+.add-book:hover,
+button:hover {
+    transform: scale(1.05); /* Increase the size on hover */
+    opacity: 0.6;
+}
+
+input:focus {
+    border: 1px solid lightskyblue;
+}
