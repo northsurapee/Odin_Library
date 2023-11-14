@@ -70,6 +70,7 @@ input.checkbox {
 
 /* card */
 .card {
+    max-width: 320px;
     background-color: white;
     border: none;
     border-radius: 10px;
@@ -91,6 +92,12 @@ input.checkbox {
 button.read,
 button.remove {
     justify-self: flex-end;
+}
+
+.title,
+.author,
+.page {
+    word-wrap: normal;      
 }
 
 .title {
