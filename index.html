@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odin Library</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="card" id="newBook">
+        <div class="form">
+            <p class="title">My Library ✨</p>
+            <div class="input">
+                <label for="title">Book Title *</label>
+                <input class="bar title" type="text" id="title" name="title" required>
+            </div>
+            <div class="input">
+                <label for="author">Author *</label>
+                <input class="bar author" type="text" id="author" name="author" required>
+            </div>
+            <div class="input">
+                <label for="pages">Number of pages *</label>
+                <input class="bar pages" type="number" id="pages" name="pages" required>
+            </div>
+            <div class="input-checkbox">
+                <label for="isRead">Have you read it?</label>
+                <input class="checkbox" type="checkbox" id="isRead" name="isRead">
+            </div>
+            <button class="add-book">+ Add book</button>
+        </div>
+    </div>
+    <div class="card-container">
+        <!--card of book in here-->
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
