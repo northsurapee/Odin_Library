@@ -1,38 +1,58 @@
-// GLOBAL VARIABLE
-const myLibrary = []
-let isRead = false
-
 // REFERENCE VARIABLE
 let title = document.querySelector('input.title')
 let author = document.querySelector('input.author')
 let pages = document.querySelector('input.pages')
 let checkbox = document.querySelector('input.checkbox')
-let addBtn = document.querySelector('.add-book')
+let addButton = document.querySelector('.add-book')
 
 // ADD EVENT LISTENER
-addBtn.addEventListener('click', () => addBookToLibrary())
+addButton.addEventListener('click', () => addNewBookToLibrary())
 
-/* Book object constructor */
-function Book(title, author, pages, isRead) {
-    this.title = title,
-    this.author = author,
-    this.pages = pages,
-    this.isRead = isRead
+// BOOK CLASS
+class Book {
+    constructor(title, author, pages, isRead) {
+        this.title = title,
+        this.author = author,
+        this.pages = pages,
+        this.isRead = isRead
+    }
+    toggleRead() {
+        this.isRead = !(this.isRead)
+    }
 }
 
-/* Add book when submit button is clicked */
-function addBookToLibrary() {
-    myLibrary.push(new Book(title.value, author.value, pages.value, checkbox.checked))
-    displayLibrary() // refresh library
+// LIBRARY CLASS
+class Library {
+    constructor() {
+        this.books = []
+    }
+    // Method
+    isInLibrary(newBook) {
+        return this.books.some((book) => book.title === newBook.title)
+    }
+    addBook(newBook) {
+        if (!this.isInLibrary(newBook)) {
+            this.books.push(newBook)
+        }
+    }
+    removeBook(title) {
+        this.books = this.books.filter((book) => book.title !== title)
+    }
+    getBook(title) {
+        return this.books.find((book) => book.title === title)
+    }
+    toggleRead(title) {
+        this.books.find((book) => book.title === title).toggleRead()
+    }
 }
 
-/* Display all books in myLibrary */
-function displayLibrary() {
+// Render all books in library
+function render() {
     // Clear old library
     var cardContainer = document.querySelector(".card-container");
     cardContainer.innerHTML = ''
-    // Make new one based current book on myLibrary
-    myLibrary.forEach((book) => {
+    // Make new one based current book on library
+    library.books.forEach((book) => {
         // Create the element
         var cardDiv = document.createElement("div");
         var titleParagraph = document.createElement("p");
@@ -74,34 +94,35 @@ function displayLibrary() {
     })
 }
 
-// Remove Book
+// Add newBook to library (when addButton is clicked)
+function addNewBookToLibrary() {
+    library.addBook(new Book(title.value, author.value, pages.value, checkbox.checked))
+    render()
+}
+
+// Remove Book from library (when removeButton is clicked)
 function removeBook(e) {
-    let container = e.target.parentNode.parentNode.parentNode;
     let book = e.target.parentNode.parentNode;
-    
-    // Remove Book from myLibrary 
-    let allBooks = container.childNodes
-    for (let i = 0; i < allBooks.length; i++) {
-        if (allBooks[i] === book) {
-            myLibrary.splice(i, 1)
-        }
-    }
-    // Remove Book from DOM
-    container.removeChild(book);
+    let Booktitle = book.querySelector('.upper-card .title').textContent
+    library.removeBook(Booktitle)
+    render()
 }
 
-// Toggle read/not-read button
+// Toggle isRead properties of Book (when isReadButton is clicked)
 function toggleRead(e) {
-    let currentClass = e.target.className
-    e.target.className = currentClass === 'read' ? 'not-read':'read'
+    let book = e.target.parentNode.parentNode;
+    let Booktitle = book.querySelector('.upper-card .title').textContent
+    library.toggleRead(Booktitle)
+    render()
 }
 
-// Initiate sample book
+// Initiate library with sample books
 const book1 = new Book('book1', 'Supee', 100, true)
-const book2 = new Book('book2', 'Dear', 200, true)
-const book3 = new Book('book3', 'Natnicha', 300, false)
-myLibrary.push(book1, book2, book3)
-displayLibrary()
+const book2 = new Book('book2', 'Dear', 200, false)
+const library = new Library()
+library.addBook(book1)
+library.addBook(book2)
+render()
 
 
 
